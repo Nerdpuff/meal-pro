@@ -1,3 +1,6 @@
 #apps-container {
   display: flex;
+  #log-container {
+    flex: 1;
+  }
 }

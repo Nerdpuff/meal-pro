@@ -1,0 +1,12 @@
+<div id="calendar-container">
+  <button
+    *ngFor="let date of calendarDates.value"
+    class="calendar-date"
+    [ngClass]="{ selected: isSameDay(date, selectedDate.value) }"
+    (click)="selectDate(date)"
+  >
+    <span class="day">{{ date | date : "dd" }}</span>
+    <br />
+    <span class="month">{{ date | date : "E" }}</span>
+  </button>
+</div>

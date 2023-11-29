@@ -1,0 +1,21 @@
+#calendar-container {
+  list-style: none;
+  display: flex;
+  button {
+    flex: 1;
+    border: 1px solid #ccc;
+    &.selected {
+      background-color: #ccc;
+    }
+
+    .day {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .month {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import { LogComponent } from './dashboard/log/log.component';
 import { QuickAddComponent } from './dashboard/quick-add/quick-add.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CaloriesPipe } from './shared/calories.pipe';
+import { CalendarComponent } from './dashboard/calendar/calendar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,6 +16,7 @@ import { CaloriesPipe } from './shared/calories.pipe';
     LogComponent,
     QuickAddComponent,
     CaloriesPipe,
+    CalendarComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
