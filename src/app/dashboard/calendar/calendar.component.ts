@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { isSameDay } from 'date-fns';
-import add from 'date-fns/add';
-import eachDayOfInterval from 'date-fns/eachDayOfInterval';
-import { BehaviorSubject } from 'rxjs';
+import { CalendarService } from 'src/app/shared/calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -10,14 +8,19 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./calendar.component.scss'],
 })
 export class CalendarComponent {
-  public selectedDate = new BehaviorSubject(new Date());
-  protected calendarDates = new BehaviorSubject(
-    this.getCalendarDates(this.selectedDate.value)
-  );
+  private calenderService: CalendarService;
+  public selectedDate: Date = new Date();
+  public calendarDates: Date[] = [];
 
-  constructor() {
-    this.selectedDate.subscribe((date) => {
-      this.calendarDates.next(this.getCalendarDates(date));
+  constructor(calenderService: CalendarService) {
+    this.calenderService = calenderService;
+
+    calenderService.selectedDate$.subscribe((date) => {
+      this.selectedDate = date;
+    });
+
+    calenderService.calendarDates$.subscribe((dates) => {
+      this.calendarDates = dates;
     });
   }
 
@@ -26,13 +29,6 @@ export class CalendarComponent {
   }
 
   protected selectDate(date: Date) {
-    this.selectedDate.next(date);
-  }
-
-  protected getCalendarDates(date: Date) {
-    const startDate = add(date, { days: -3 });
-    const endDate = add(date, { days: 3 });
-
-    return eachDayOfInterval({ start: startDate, end: endDate });
+    this.calenderService.selectDate(date);
   }
 }
