@@ -1,0 +1,28 @@
+<form [formGroup]="quickAddForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" />
+  </div>
+
+  <div>
+    <label for="calories">Calories</label>
+    <input
+      id="calories"
+      [defaultValue]="0"
+      type="number"
+      min="0"
+      formControlName="calories"
+    />
+  </div>
+
+  <div>
+    <label for="type">Type</label>
+    <select formControlName="type">
+      <option *ngFor="let type of mealTypes" [value]="type" x>
+        {{ type | titlecase }}
+      </option>
+    </select>
+  </div>
+
+  <button class="button" type="submit">Add</button>
+</form>
