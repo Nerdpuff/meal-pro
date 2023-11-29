@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CaloriesPipe } from './shared/calories.pipe';
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { ThemeComponent } from './theme/theme.component';
+import { MealSummaryPipe } from './meal-summary.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { ThemeComponent } from './theme/theme.component';
     CaloriesPipe,
     CalendarComponent,
     ThemeComponent,
+    MealSummaryPipe,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

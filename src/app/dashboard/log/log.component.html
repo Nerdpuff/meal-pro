@@ -1,13 +1,25 @@
 <div *ngIf="todaysLog !== undefined; else noData">
-  <ul *ngFor="let meal of todaysLog.meals" class="log-group">
-    <li class="log-item">
-      <h2>{{ meal.type | titlecase }}</h2>
-      <div *ngFor="let food of meal.foods">
-        <p>{{ food.name }}</p>
-        <p>{{ food.calories | calories }}</p>
-      </div>
-    </li>
-  </ul>
+  <div *ngFor="let meal of todaysLog.meals">
+    <h2>{{ meal.type | titlecase }}</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Calories</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let food of meal.foods">
+          <td>{{ food.name }}</td>
+          <td>{{ food.calories | calories }}</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total</td>
+          <td>{{ meal.foods | mealSummary | calories }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <ng-template #noData> <p>No data for today!</p> </ng-template>

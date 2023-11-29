@@ -8,7 +8,7 @@ type Meal = {
   foods: Food[];
 };
 
-type Food = {
+export type Food = {
   name: string;
   calories: number;
 };
