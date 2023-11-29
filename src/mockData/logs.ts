@@ -2,7 +2,7 @@ import { Log, MealType } from 'src/app/dashboard/log/log';
 
 export const mockData: Log[] = [
   {
-    date: new Date('2021-01-01'),
+    date: new Date(),
     meals: [
       {
         type: MealType.Breakfast,

@@ -1,12 +1,13 @@
-<ul *ngFor="let log of logs" class="log-group">
-  <li class="log-item">
-    <p>{{ log.date | date : "dd/MM/yyyy" }}</p>
-    <div *ngFor="let meal of log.meals; index as index">
+<div *ngIf="todaysLog !== undefined; else noData">
+  <ul *ngFor="let meal of todaysLog.meals" class="log-group">
+    <li class="log-item">
       <h2>{{ meal.type }}</h2>
       <div *ngFor="let food of meal.foods">
         <p>{{ food.name }}</p>
         <p>{{ food.calories | calories }}</p>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noData> <p>No data for today!</p> </ng-template>

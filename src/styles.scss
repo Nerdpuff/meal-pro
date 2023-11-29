@@ -9,7 +9,81 @@ ul {
   padding: 0;
 }
 
+input,
+select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  &:focus {
+    outline: none;
+    border-color: #543fd7;
+  }
+}
+
 button {
   border: none;
   cursor: pointer;
+}
+
+:root {
+  --background-color: #fff;
+  --text-color: #121416d8;
+  --link-color: #543fd7;
+  --alternate-background-color: #f7f7f9;
+  --text-color-light: #777676bb;
+  --masthead-color: #543fd7;
+  --masthead-text: #fff;
+  --button-color: #263238;
+  --button-text: #fff;
+  --bs-font-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-serif: Georgia, serif;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  &:hover {
+    text-decoration: underline;
+    filter: brightness(80%);
+  }
+}
+
+html[data-theme="light"] {
+  --background-color: #fff;
+  --text-color: #121416d8;
+  --link-color: #543fd7;
+}
+
+html[data-theme="dark"] {
+  --background-color: #212a2e;
+  --text-color: #f7f8f8;
+  --link-color: #828fff;
+}
+
+button:hover {
+  filter: brightness(250%);
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] {
+  input,
+  button,
+  select {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-color: rgba(0, 0, 0, 0.6);
+    color: var(--text-color);
+    &:focus {
+      background-color: rgba(0, 0, 0, 0.8);
+      border-color: rgba(0, 0, 0, 0.8);
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { add, eachDayOfInterval, isSameDay } from 'date-fns';
+import { add, eachDayOfInterval } from 'date-fns';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({

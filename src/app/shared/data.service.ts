@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Log } from '../dashboard/log/log';
 import { BehaviorSubject } from 'rxjs';
 import { mockData } from 'src/mockData/logs';
+import { isSameDay } from 'date-fns';
 
 @Injectable({
   providedIn: 'root',
@@ -35,5 +36,9 @@ export class DataService {
       currentData.push(log);
     }
     this.data$.next(currentData);
+  }
+
+  public getLogsByDate(date: Date): Log {
+    return this.data$.value.filter((x) => isSameDay(x.date, date))[0];
   }
 }
