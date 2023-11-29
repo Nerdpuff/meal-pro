@@ -1,5 +1,12 @@
 #apps-container {
   display: flex;
+  > * {
+    margin: 0 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 12px;
+  }
+
   #log-container {
     flex: 1;
   }

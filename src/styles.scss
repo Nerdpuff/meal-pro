@@ -59,31 +59,46 @@ a {
 
 html[data-theme="light"] {
   --background-color: #fff;
+  --button-background-color: #b8adfd;
+  --button-selected-color: #9b8cfc;
+  --button-hover-color: #7e6bfb;
   --text-color: #121416d8;
   --link-color: #543fd7;
 }
 
 html[data-theme="dark"] {
   --background-color: #212a2e;
+  --button-background-color: #695cc1;
+  --button-selected-color: #5445b6;
+  --button-hover-color: #493c9d;
   --text-color: #f7f8f8;
   --link-color: #828fff;
 }
 
-button:hover {
-  filter: brightness(250%);
-  background-color: rgba(0, 0, 0, 0.3) !important;
+button {
+  background-color: var(--button-background-color);
+  &:hover {
+    background-color: var(--button-hover-color) !important;
+  }
+  &.selected {
+    background-color: var(--button-selected-color);
+  }
+}
+
+select,
+input {
+  background-color: var(--background-color);
 }
 
 [data-theme="dark"] {
   input,
   button,
   select {
-    background-color: rgba(0, 0, 0, 0.6);
     border-color: rgba(0, 0, 0, 0.6);
     color: var(--text-color);
-    &:focus {
-      background-color: rgba(0, 0, 0, 0.8);
-      border-color: rgba(0, 0, 0, 0.8);
+    &:focus,
+    &.selected {
+      border-color: rgba(0, 0, 0, 0.3);
     }
   }
 }

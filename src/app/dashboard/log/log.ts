@@ -3,9 +3,14 @@ export type Log = {
   meals: Meal[];
 };
 
-export type Meal = {
+type Meal = {
   type: MealType;
   foods: Food[];
+};
+
+type Food = {
+  name: string;
+  calories: number;
 };
 
 export enum MealType {
@@ -15,8 +20,3 @@ export enum MealType {
   Snack = 'snack',
   QuickAdd = 'quick-add',
 }
-
-export type Food = {
-  name: string;
-  calories: number;
-};

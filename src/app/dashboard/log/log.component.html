@@ -1,7 +1,7 @@
 <div *ngIf="todaysLog !== undefined; else noData">
   <ul *ngFor="let meal of todaysLog.meals" class="log-group">
     <li class="log-item">
-      <h2>{{ meal.type }}</h2>
+      <h2>{{ meal.type | titlecase }}</h2>
       <div *ngFor="let food of meal.foods">
         <p>{{ food.name }}</p>
         <p>{{ food.calories | calories }}</p>

@@ -1,0 +1,11 @@
+<div>
+  <button
+    [ngClass]="{ selected: theme === 'light' }"
+    (click)="setTheme('light')"
+  >
+    Light
+  </button>
+  <button [ngClass]="{ selected: theme === 'dark' }" (click)="setTheme('dark')">
+    Dark
+  </button>
+</div>
