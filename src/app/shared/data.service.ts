@@ -18,6 +18,75 @@ export class DataService {
     return this.logData.getValue().length;
   }
 
+  getHighestCalorieDate(): Log {
+    const data = this.logData.getValue();
+    const highestCalorieDate = data.reduce((prev, curr) => {
+      const prevTotal = prev.meals.reduce(
+        (prevTotal, currMeal) =>
+          prevTotal +
+          currMeal.foods.reduce(
+            (prevMealTotal, currFood) => prevMealTotal + currFood.calories,
+            0
+          ),
+        0
+      );
+      const currTotal = curr.meals.reduce(
+        (prevTotal, currMeal) =>
+          prevTotal +
+          currMeal.foods.reduce(
+            (prevMealTotal, currFood) => prevMealTotal + currFood.calories,
+            0
+          ),
+        0
+      );
+      return prevTotal > currTotal ? prev : curr;
+    });
+    return highestCalorieDate;
+  }
+
+  getAverageCaloriesPerDay(): number {
+    const data = this.logData.getValue();
+    const totalCalories = data.reduce((prev, curr) => {
+      const currTotal = curr.meals.reduce(
+        (prevTotal, currMeal) =>
+          prevTotal +
+          currMeal.foods.reduce(
+            (prevMealTotal, currFood) => prevMealTotal + currFood.calories,
+            0
+          ),
+        0
+      );
+      return prev + currTotal;
+    }, 0);
+    return totalCalories / data.length;
+  }
+
+  getLowestCalorieDate(): Log {
+    const data = this.logData.getValue();
+    const lowestCalorieDate = data.reduce((prev, curr) => {
+      const prevTotal = prev.meals.reduce(
+        (prevTotal, currMeal) =>
+          prevTotal +
+          currMeal.foods.reduce(
+            (prevMealTotal, currFood) => prevMealTotal + currFood.calories,
+            0
+          ),
+        0
+      );
+      const currTotal = curr.meals.reduce(
+        (prevTotal, currMeal) =>
+          prevTotal +
+          currMeal.foods.reduce(
+            (prevMealTotal, currFood) => prevMealTotal + currFood.calories,
+            0
+          ),
+        0
+      );
+      return prevTotal < currTotal ? prev : curr;
+    });
+    return lowestCalorieDate;
+  }
+
   getLog(date: Date): Log {
     const data = this.logData.getValue();
     const log = data.find(
@@ -40,7 +109,7 @@ export class DataService {
     return log || { date, meals: [] };
   }
 
-  public addLog(log: Log): void {
+  addLog(log: Log): void {
     const currentData = this.logData.getValue();
     const existingDate = currentData.find(
       (x) =>
