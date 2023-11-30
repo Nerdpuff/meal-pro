@@ -4,14 +4,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: DashboardComponent,
-  },
-  {
-    path: 'analytics',
-    component: AnalyticsComponent,
-  },
+  { path: 'dash', component: DashboardComponent, title: 'Dashboard' },
+  { path: 'dash/:date', component: DashboardComponent, title: 'Dashboard' },
+  { path: 'analytics', component: AnalyticsComponent, title: 'Analytics' },
+  { path: '**', redirectTo: 'dash' },
 ];
 
 @NgModule({

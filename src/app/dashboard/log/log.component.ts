@@ -4,6 +4,7 @@ import { CalendarService } from 'src/app/shared/calendar.service';
 import { BehaviorSubject } from 'rxjs';
 import { Meal } from './log';
 import { isSameDay } from 'date-fns';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-log',
@@ -15,8 +16,16 @@ export class LogComponent {
 
   constructor(
     private dataService: DataService,
-    protected calenderService: CalendarService
+    protected calenderService: CalendarService,
+    private route: ActivatedRoute
   ) {
+    route.params.subscribe((params) => {
+      if (params['date']) {
+        const date = new Date(params['date']);
+        calenderService.selectedDate$.next(date);
+      }
+    });
+
     this.dataService.data$.subscribe((data) => {
       const todaysMeals = data.find((x) =>
         isSameDay(x.date, this.calenderService.selectedDate$.getValue())

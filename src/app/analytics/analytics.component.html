@@ -1,11 +1,25 @@
 <p>Days logged: {{ dataService.getDaysLogged() }}</p>
 <p>
   Highest Calorie Date:
-  {{ dataService.getHighestCalorieDate().date | date : "EEEE, MMMM d, y" }}
+  <a
+    [routerLink]="[
+      '/dash',
+      dataService.getHighestCalorieDate().date | date : 'y-MM-dd'
+    ]"
+    >{{
+      dataService.getHighestCalorieDate().date | date : "EEEE, MMMM d, y"
+    }}</a
+  >
 </p>
 <p>
   Lowest Calorie Date:
-  {{ dataService.getLowestCalorieDate().date | date : "EEEE, MMMM d, y" }}
+  <a
+    [routerLink]="[
+      '/dash',
+      dataService.getLowestCalorieDate().date | date : 'y-MM-dd'
+    ]"
+    >{{ dataService.getLowestCalorieDate().date | date : "EEEE, MMMM d, y" }}</a
+  >
 </p>
 <p>
   Average Calories:
