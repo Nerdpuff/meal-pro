@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DataService } from 'src/app/shared/data.service';
 import { Log } from './log';
 import { CalendarService } from 'src/app/shared/calendar.service';
+import { isSameDay } from 'date-fns';
 
 @Component({
   selector: 'app-log',
@@ -15,8 +16,16 @@ export class LogComponent {
     private dataService: DataService,
     private calenderService: CalendarService
   ) {
+    this.dataService.data$.subscribe((data) => {
+      this.todaysLog = data.find((x) =>
+        isSameDay(x.date, this.calenderService.selectedDate$.getValue())
+      );
+    });
+
     this.calenderService.selectedDate$.subscribe((date) => {
-      this.todaysLog = this.dataService.getLogsByDate(date);
+      this.todaysLog = this.dataService.data$.value.find((x) =>
+        isSameDay(x.date, date)
+      );
     });
   }
 }

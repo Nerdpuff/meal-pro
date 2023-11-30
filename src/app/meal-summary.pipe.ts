@@ -3,6 +3,8 @@ import { Food } from './dashboard/log/log';
 
 @Pipe({
   name: 'mealSummary',
+  // Shouldn't be false! Can't get observable to update without it.
+  pure: false,
 })
 export class MealSummaryPipe implements PipeTransform {
   transform(value: Food[], ...args: unknown[]): number {

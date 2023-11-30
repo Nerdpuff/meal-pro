@@ -48,7 +48,6 @@ export class QuickAddComponent {
     )
       return;
 
-    console.warn(this.quickAddForm.value);
     this.dataService.addLog({
       date: new Date(),
       meals: [
