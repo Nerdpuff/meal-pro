@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from 'src/app/shared/data.service';
-import { Log } from './log';
+import { Log, MealType } from './log';
 import { CalendarService } from 'src/app/shared/calendar.service';
 import { isSameDay } from 'date-fns';
 
@@ -10,22 +10,23 @@ import { isSameDay } from 'date-fns';
   styleUrls: ['./log.component.scss'],
 })
 export class LogComponent {
-  protected todaysLog: Log | undefined;
+  todaysLog: Log = {
+    date: new Date(),
+    meals: [],
+  };
 
   constructor(
     private dataService: DataService,
     private calenderService: CalendarService
   ) {
     this.dataService.data$.subscribe((data) => {
-      this.todaysLog = data.find((x) =>
-        isSameDay(x.date, this.calenderService.selectedDate$.getValue())
+      const log = data.find((x) =>
+        isSameDay(x.date, this.calenderService.selectedDate$.value)
       );
-    });
 
-    this.calenderService.selectedDate$.subscribe((date) => {
-      this.todaysLog = this.dataService.data$.value.find((x) =>
-        isSameDay(x.date, date)
-      );
+      if (log) {
+        this.todaysLog = log;
+      }
     });
   }
 }

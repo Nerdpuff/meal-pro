@@ -3,7 +3,7 @@ import { Food } from './dashboard/log/log';
 
 @Pipe({
   name: 'mealSummary',
-  // Shouldn't be false! Can't get observable to update without it.
+  // TODO: Why do we need to set pure to false?
   pure: false,
 })
 export class MealSummaryPipe implements PipeTransform {

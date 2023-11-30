@@ -7,14 +7,15 @@ import { mockData } from 'src/mockData/logs';
   providedIn: 'root',
 })
 export class DataService {
-  public data$ = new BehaviorSubject<Log[]>([]);
+  private logData = new BehaviorSubject<Log[]>([]);
+  public data$ = this.logData.asObservable();
 
   constructor() {
-    this.data$.next(mockData);
+    this.logData.next(mockData);
   }
 
   public addLog(log: Log): void {
-    const currentData = this.data$.getValue();
+    const currentData = this.logData.getValue();
     const existingDate = currentData.find(
       (x) =>
         x.date.getFullYear() === log.date.getFullYear() &&
@@ -33,6 +34,6 @@ export class DataService {
     } else {
       currentData.push(log);
     }
-    this.data$.next(currentData);
+    this.logData.next(currentData);
   }
 }
