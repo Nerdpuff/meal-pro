@@ -3,7 +3,7 @@ export type Log = {
   meals: Meal[];
 };
 
-type Meal = {
+export type Meal = {
   type: MealType;
   foods: Food[];
 };

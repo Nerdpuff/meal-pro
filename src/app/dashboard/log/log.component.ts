@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { DataService } from 'src/app/shared/data.service';
-import { Log, MealType } from './log';
 import { CalendarService } from 'src/app/shared/calendar.service';
+import { BehaviorSubject } from 'rxjs';
+import { Meal } from './log';
 import { isSameDay } from 'date-fns';
 
 @Component({
@@ -10,22 +11,29 @@ import { isSameDay } from 'date-fns';
   styleUrls: ['./log.component.scss'],
 })
 export class LogComponent {
-  todaysLog: Log = {
-    date: new Date(),
-    meals: [],
-  };
+  todaysMeals: BehaviorSubject<Meal[]> = new BehaviorSubject<Meal[]>([]);
 
   constructor(
     private dataService: DataService,
-    private calenderService: CalendarService
+    protected calenderService: CalendarService
   ) {
     this.dataService.data$.subscribe((data) => {
-      const log = data.find((x) =>
-        isSameDay(x.date, this.calenderService.selectedDate$.value)
+      const todaysMeals = data.find((x) =>
+        isSameDay(x.date, this.calenderService.selectedDate$.getValue())
       );
 
-      if (log) {
-        this.todaysLog = log;
+      if (todaysMeals) {
+        this.todaysMeals.next(todaysMeals.meals);
+      }
+    });
+
+    this.calenderService.selectedDate$.subscribe((date) => {
+      const todaysMeals = this.dataService.getMealsForDate(date);
+
+      if (todaysMeals) {
+        this.todaysMeals.next(todaysMeals.meals);
+      } else {
+        this.todaysMeals.next([]);
       }
     });
   }

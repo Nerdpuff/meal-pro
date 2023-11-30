@@ -20,7 +20,20 @@ table {
     padding: 16px;
   }
   th {
-    background-color: var(--accent-50);
-    color: #fff;
+    background-color: var(--accent-75);
+    color: var(--text-color);
   }
+  td {
+    width: 50%;
+  }
+  .total-row {
+    background-color: var(--accent-50);
+    color: var(--text-color);
+  }
+}
+
+#no-data-msg {
+  text-align: center;
+  margin: 20px 0;
+  font-size: larger;
 }

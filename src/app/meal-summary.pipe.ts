@@ -3,7 +3,7 @@ import { Food } from './dashboard/log/log';
 
 @Pipe({
   name: 'mealSummary',
-  // TODO: Why do we need to set pure to false?
+  // TODO: Understand why this is needed.
   pure: false,
 })
 export class MealSummaryPipe implements PipeTransform {

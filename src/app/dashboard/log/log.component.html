@@ -1,5 +1,5 @@
-<div *ngIf="todaysLog !== undefined; else noData">
-  <div *ngFor="let meal of todaysLog.meals">
+<div *ngIf="(todaysMeals | async)?.length !== 0; else noData">
+  <div *ngFor="let meal of todaysMeals | async">
     <h2>{{ meal.type | titlecase }}</h2>
     <table>
       <thead>
@@ -22,4 +22,9 @@
   </div>
 </div>
 
-<ng-template #noData> <p>No data for today!</p> </ng-template>
+<ng-template #noData>
+  <p id="no-data-msg">
+    No data for
+    {{ calenderService.selectedDate$ | async | date : "EEEE, MMMM d, y" }}!
+  </p>
+</ng-template>

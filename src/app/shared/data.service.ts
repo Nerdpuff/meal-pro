@@ -14,6 +14,28 @@ export class DataService {
     this.logData.next(mockData);
   }
 
+  getLog(date: Date): Log {
+    const data = this.logData.getValue();
+    const log = data.find(
+      (x) =>
+        x.date.getFullYear() === date.getFullYear() &&
+        x.date.getMonth() === date.getMonth() &&
+        x.date.getDate() === date.getDate()
+    );
+    return log || { date, meals: [] };
+  }
+
+  getMealsForDate(date: Date): Log {
+    const data = this.logData.getValue();
+    const log = data.find(
+      (x) =>
+        x.date.getFullYear() === date.getFullYear() &&
+        x.date.getMonth() === date.getMonth() &&
+        x.date.getDate() === date.getDate()
+    );
+    return log || { date, meals: [] };
+  }
+
   public addLog(log: Log): void {
     const currentData = this.logData.getValue();
     const existingDate = currentData.find(
