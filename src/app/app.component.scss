@@ -1,5 +1,16 @@
 #navbar {
   display: flex;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  a:not(:first-child) {
+    margin-left: 20px;
+  }
   app-theme {
     margin-left: auto;
   }

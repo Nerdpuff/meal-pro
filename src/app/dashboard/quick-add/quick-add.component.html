@@ -11,6 +11,9 @@
     formControlName="calories"
   />
 
+  <label for="date">Date</label>
+  <input id="date" type="date" formControlName="date" />
+
   <label for="type">Type</label>
   <select formControlName="type">
     <option *ngFor="let type of mealTypes" [value]="type" x>

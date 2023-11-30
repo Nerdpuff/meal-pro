@@ -14,6 +14,10 @@ export class DataService {
     this.logData.next(mockData);
   }
 
+  getDaysLogged(): number {
+    return this.logData.getValue().length;
+  }
+
   getLog(date: Date): Log {
     const data = this.logData.getValue();
     const log = data.find(

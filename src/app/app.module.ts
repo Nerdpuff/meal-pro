@@ -11,6 +11,7 @@ import { CaloriesPipe } from './shared/calories.pipe';
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { ThemeComponent } from './theme/theme.component';
 import { MealSummaryPipe } from './meal-summary.pipe';
+import { AnalyticsComponent } from './analytics/analytics.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +22,7 @@ import { MealSummaryPipe } from './meal-summary.pipe';
     CalendarComponent,
     ThemeComponent,
     MealSummaryPipe,
+    AnalyticsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],

@@ -37,6 +37,11 @@ export class QuickAddComponent {
       nonNullable: true,
       validators: [Validators.required],
     }),
+    date: new FormControl(new Date().toISOString().slice(0, 10), {
+      // why is Angular's date format so weird?
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
   onSubmit(): void {
@@ -44,12 +49,13 @@ export class QuickAddComponent {
       this.quickAddForm.invalid ||
       this.quickAddForm.value.name === undefined ||
       this.quickAddForm.value.type === undefined ||
-      this.quickAddForm.value.calories === undefined
+      this.quickAddForm.value.calories === undefined ||
+      this.quickAddForm.value.date === undefined
     )
       return;
 
     this.dataService.addLog({
-      date: new Date(),
+      date: new Date(this.quickAddForm.value.date),
       meals: [
         {
           type: this.quickAddForm.value.type,
