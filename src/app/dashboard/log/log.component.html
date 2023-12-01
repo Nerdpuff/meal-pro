@@ -13,7 +13,7 @@
           <td>{{ food.name }}</td>
           <td>{{ food.calories | calories }}</td>
         </tr>
-        <tr class="total-row">
+        <tr appTotal>
           <td>Total</td>
           <td>{{ meal.foods | mealSummary | calories }}</td>
         </tr>

@@ -12,6 +12,7 @@ import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { ThemeComponent } from './theme/theme.component';
 import { MealSummaryPipe } from './meal-summary.pipe';
 import { AnalyticsComponent } from './analytics/analytics.component';
+import { TotalDirective } from './shared/directives/total.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
     ThemeComponent,
     MealSummaryPipe,
     AnalyticsComponent,
+    TotalDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
