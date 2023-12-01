@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Log } from '../dashboard/log/log';
+import { Log } from '../../dashboard/log/log';
 import { BehaviorSubject } from 'rxjs';
 import { mockData } from 'src/mockData/logs';
 
@@ -7,12 +7,8 @@ import { mockData } from 'src/mockData/logs';
   providedIn: 'root',
 })
 export class DataService {
-  private logData = new BehaviorSubject<Log[]>([]);
+  private logData = new BehaviorSubject<Log[]>(mockData);
   public data$ = this.logData.asObservable();
-
-  constructor() {
-    this.logData.next(mockData);
-  }
 
   getDaysLogged(): number {
     return this.logData.getValue().length;

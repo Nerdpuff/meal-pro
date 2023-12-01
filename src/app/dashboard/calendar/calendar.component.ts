@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { isSameDay } from 'date-fns';
-import { CalendarService } from 'src/app/shared/calendar.service';
+import { CalendarService } from 'src/app/shared/services/calendar.service';
 
 @Component({
   selector: 'app-calendar',

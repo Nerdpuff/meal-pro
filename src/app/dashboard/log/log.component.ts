@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { DataService } from 'src/app/shared/data.service';
-import { CalendarService } from 'src/app/shared/calendar.service';
+import { DataService } from 'src/app/shared/services/data.service';
+import { CalendarService } from 'src/app/shared/services/calendar.service';
 import { BehaviorSubject } from 'rxjs';
 import { Meal } from './log';
 import { isSameDay } from 'date-fns';
@@ -22,13 +22,13 @@ export class LogComponent {
     route.params.subscribe((params) => {
       if (params['date']) {
         const date = new Date(params['date']);
-        calenderService.selectedDate$.next(date);
+        calenderService.setDate(date);
       }
     });
 
     this.dataService.data$.subscribe((data) => {
       const todaysMeals = data.find((x) =>
-        isSameDay(x.date, this.calenderService.selectedDate$.getValue())
+        isSameDay(x.date, this.calenderService.selectedDate)
       );
 
       if (todaysMeals) {
