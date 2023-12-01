@@ -7,15 +7,18 @@ import { mockData } from 'src/mockData/logs';
   providedIn: 'root',
 })
 export class DataService {
-  private logData = new BehaviorSubject<Log[]>(mockData);
-  public data$ = this.logData.asObservable();
+  private _data = new BehaviorSubject<Log[]>(mockData);
+  public data$ = this._data.asObservable();
+  get data(): Log[] {
+    return this._data.getValue();
+  }
 
   getDaysLogged(): number {
-    return this.logData.getValue().length;
+    return this._data.getValue().length;
   }
 
   getHighestCalorieDate(): Log {
-    const data = this.logData.getValue();
+    const data = this._data.getValue();
     const highestCalorieDate = data.reduce((prev, curr) => {
       const prevTotal = prev.meals.reduce(
         (prevTotal, currMeal) =>
@@ -41,7 +44,7 @@ export class DataService {
   }
 
   getAverageCaloriesPerDay(): number {
-    const data = this.logData.getValue();
+    const data = this._data.getValue();
     const totalCalories = data.reduce((prev, curr) => {
       const currTotal = curr.meals.reduce(
         (prevTotal, currMeal) =>
@@ -58,7 +61,7 @@ export class DataService {
   }
 
   getLowestCalorieDate(): Log {
-    const data = this.logData.getValue();
+    const data = this._data.getValue();
     const lowestCalorieDate = data.reduce((prev, curr) => {
       const prevTotal = prev.meals.reduce(
         (prevTotal, currMeal) =>
@@ -84,7 +87,7 @@ export class DataService {
   }
 
   getLog(date: Date): Log {
-    const data = this.logData.getValue();
+    const data = this._data.getValue();
     const log = data.find(
       (x) =>
         x.date.getFullYear() === date.getFullYear() &&
@@ -95,7 +98,7 @@ export class DataService {
   }
 
   getMealsForDate(date: Date): Log {
-    const data = this.logData.getValue();
+    const data = this._data.getValue();
     const log = data.find(
       (x) =>
         x.date.getFullYear() === date.getFullYear() &&
@@ -106,7 +109,7 @@ export class DataService {
   }
 
   addLog(log: Log): void {
-    const currentData = this.logData.getValue();
+    const currentData = this._data.getValue();
     const existingDate = currentData.find(
       (x) =>
         x.date.getFullYear() === log.date.getFullYear() &&
@@ -125,6 +128,6 @@ export class DataService {
     } else {
       currentData.push(log);
     }
-    this.logData.next(currentData);
+    this._data.next(currentData);
   }
 }
